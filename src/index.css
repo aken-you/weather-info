@@ -45,3 +45,43 @@
   --color-error-primary: var(--color-red-500);
   --color-error-accent: var(--color-red-200);
 }
+
+@utility font-display {
+  font-size: 3rem;
+  font-weight: var(--font-weight-bold);
+}
+
+@utility font-h1 {
+  font-size: 2.25rem;
+  font-weight: var(--font-weight-bold);
+}
+
+@utility font-h2 {
+  font-size: 1.75rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+@utility font-h3 {
+  font-size: 1.375rem;
+  font-weight: var(--font-weight-semibold);
+}
+
+@utility font-body-large {
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-normal);
+}
+
+@utility font-body {
+  font-size: 1rem;
+  font-weight: var(--font-weight-normal);
+}
+
+@utility font-body-small {
+  font-size: 0.875rem;
+  font-weight: var(--font-weight-normal);
+}
+
+@utility font-caption {
+  font-size: 0.75rem;
+  font-weight: var(--font-weight-normal);
+}
