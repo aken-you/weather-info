@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 @import 'tailwindcss';
 @import 'tw-animate-css';
 @import 'shadcn/tailwind.css';
@@ -5,6 +6,13 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
+  /* Break Points - 480px 이하는 모바일로 간주 */
+  --breakpoint-mobile: 30rem;
+  --breakpoint-desktop: 30.0625rem;
+
+  /* Font Family */
+  --font-sans: 'Inter', 'sans-serif';
+
   /* Global Tokens */
   --color-cyan-50: #e6f8fc;
   --color-cyan-100: #b3eaf4;
