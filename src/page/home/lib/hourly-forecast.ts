@@ -1,3 +1,5 @@
+import { getNowDate, isAfter, parseYYYYMMDDHHMM } from 'shared/lib/time'
+
 interface HourlyForecast {
   fcstDate: string
   fcstTime: string
@@ -12,13 +14,28 @@ export function getHourlyForecastList({
   ultraShortForecast: HourlyForecast[]
   shortForecast: HourlyForecast[]
 }) {
+  // 현재 시간 정보
+  const nowDateObj = getNowDate()
+
   // 초단기예보의 시간대를 Set으로 저장 (빠른 조회를 위해)
   const ultraShortTimeSet = new Set(ultraShortForecast.map(item => `${item.fcstDate}_${item.fcstTime}`))
 
-  // 단기예보에서 초단기예보 시간대를 제외한 데이터만 필터링
+  // 단기예보에서 초단기예보 시간대를 제외하고, 현재 시간 이후의 데이터만 필터링
   const remainingShortForecast = shortForecast.filter(item => {
     const timeKey = `${item.fcstDate}_${item.fcstTime}`
-    return !ultraShortTimeSet.has(timeKey)
+
+    // 초단기예보에 이미 있는 시간대는 제외
+    if (ultraShortTimeSet.has(timeKey)) {
+      return false
+    }
+
+    // 현재 시간 이후의 데이터만 필터링
+    const forecastDateObj = parseYYYYMMDDHHMM(`${item.fcstDate}${item.fcstTime}`)
+
+    return isAfter({
+      date: forecastDateObj,
+      comparisonDate: nowDateObj,
+    })
   })
 
   // 남은 단기예보 순서로 결합
