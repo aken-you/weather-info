@@ -58,5 +58,9 @@ interface AppLayoutFooterProps {
 }
 
 export function AppLayoutFooter({ children, className }: AppLayoutFooterProps) {
-  return <footer className={`fixed right-0 bottom-0 left-0 px-4 pt-2 pb-4 ${className || ''}`}>{children}</footer>
+  return (
+    <footer className={`fixed right-0 bottom-0 left-0 border-t border-t-gray-300 px-4 pt-2 pb-4 ${className || ''}`}>
+      {children}
+    </footer>
+  )
 }
