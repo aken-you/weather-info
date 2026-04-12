@@ -63,3 +63,10 @@ export function formatHHMM(date: Date, separator: string = ''): string {
 
   return `${hh}${separator}${mm}`
 }
+
+/**
+ * date가 comparisonDate보다 미래인지 확인
+ */
+export function isAfter({ date, comparisonDate }: { date: Date; comparisonDate: Date }) {
+  return date > comparisonDate
+}
