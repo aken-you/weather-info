@@ -5,11 +5,11 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useCurrentLocation } from 'shared/lib/use-current-location'
 import { Suspense } from 'react'
 import { WeatherSection } from 'widgets/weather/ui/weather-section'
-import { SearchLocationDialog } from 'features/search-location/ui/search-location-dialog'
 import { useQuery } from '@tanstack/react-query'
 import { locationQueryKey } from 'entities/location/api/query-key'
 import FavoriteSidebar from 'widgets/favorite/ui/favorite-sidebar'
 import { useLastActiveTab } from 'shared/lib/use-last-active-tab'
+import { SearchLocationDialog } from 'features/location/ui/search-location-dialog'
 
 export function HomePage() {
   const deviceType = useDeviceType()

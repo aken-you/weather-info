@@ -7,9 +7,10 @@ import { useDeviceType } from 'shared/lib/use-device-type'
 import { AppLayout, AppLayoutContent, AppLayoutFooter, AppLayoutHeader, AppLayoutMain } from 'shared/ui/app-layout'
 import { Button } from 'shared/ui/button'
 import { Input } from 'shared/ui/input'
-import { SearchLocationDialog } from 'features/search-location/ui/search-location-dialog'
+
 import FavoriteSidebar from 'widgets/favorite/ui/favorite-sidebar'
 import { useLastActiveTab } from 'shared/lib/use-last-active-tab'
+import { SearchLocationDialog } from 'features/location/ui/search-location-dialog'
 
 export function AddFavoritePage() {
   const navigate = useNavigate()

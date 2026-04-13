@@ -3,7 +3,7 @@ import { weatherQueryKey } from 'entities/weather/api/query-key'
 import { HourlyForecastItem } from 'entities/weather/ui/hourly-forecast-item'
 import { formatYYYYMMDD, getNowDate } from 'shared/lib/time'
 import { getCurrentHourWeather, getHourlyForecastList } from '../lib/hourly-forecast'
-import { getLastDepthAddress } from 'features/search-location/lib/address'
+import { getLastDepthAddress } from 'features/location/lib/address'
 import { getWeatherIconPath, getWeatherStatusText } from 'entities/weather/lib/weather-icon'
 import { WeatherStatus } from 'entities/weather/model/weather-status'
 
