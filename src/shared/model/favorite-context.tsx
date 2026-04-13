@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from 'react'
-import { MAX_FAVORITE_LIMIT } from '../../entities/favorite/config/favorite'
+import { MAX_FAVORITE_LIMIT } from '../config/favorite'
 
 export interface Favorite {
   id: string
