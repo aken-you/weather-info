@@ -97,4 +97,40 @@ export function WeatherSection({ currentAddress, address, location }: WeatherSec
   )
 }
 
-WeatherSection.Loading = () => <div>loading...</div>
+WeatherSection.Loading = () => {
+  return (
+    <>
+      {/* 주소 및 날짜 섹션 */}
+      <section className="desktop:pt-0 flex flex-col items-center gap-2 pt-7">
+        <div className="flex items-center gap-2">
+          <div className="h-8 w-32 animate-pulse rounded-md bg-gray-300" />
+        </div>
+        <div className="h-4 w-48 animate-pulse rounded-md bg-gray-200" />
+      </section>
+
+      {/* 현재 날씨 섹션 */}
+      <section className="flex flex-col items-center gap-2 py-3">
+        <div className="flex items-center gap-1">
+          <div className="h-22.5 w-22.5 animate-pulse rounded-full bg-gray-300" />
+          <div className="h-20 w-32 animate-pulse rounded-md bg-gray-300" />
+        </div>
+        <div className="h-6 w-20 animate-pulse rounded-md bg-gray-200" />
+        <div className="h-5 w-40 animate-pulse rounded-md bg-gray-200" />
+      </section>
+
+      {/* 시간대별 예보 섹션 */}
+      <section className="desktop:rounded-lg desktop:border desktop:border-gray-300 desktop:max-w-125 flex w-full flex-col gap-2 border-t border-b border-t-gray-300 border-b-gray-300 bg-gray-50 px-4 py-3">
+        <div className="h-4 w-24 animate-pulse rounded-md bg-gray-300" />
+        <div className="flex w-full gap-2 overflow-x-auto">
+          {Array.from({ length: 10 }).map((_, index) => (
+            <div key={index} className="flex flex-col items-center gap-2 rounded-lg bg-white p-2">
+              <div className="h-4 w-12 animate-pulse rounded-md bg-gray-200" />
+              <div className="h-10 w-10 animate-pulse rounded-full bg-gray-300" />
+              <div className="h-5 w-10 animate-pulse rounded-md bg-gray-200" />
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
+  )
+}
