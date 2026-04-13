@@ -8,22 +8,24 @@ import {
   AppLayoutSidebar,
 } from 'shared/ui/app-layout'
 import { Plus, Star, Sun } from 'lucide-react'
-import { Link, NavLink } from 'react-router-dom'
+import { Link, NavLink, useParams } from 'react-router-dom'
 import { useCurrentLocation } from 'shared/lib/use-current-location'
 import { Suspense } from 'react'
-import { WeatherSection } from 'widgets/weather/ui/weather-section'
 import { SearchLocationTriggerButton } from 'features/search-location/ui/search-location-trigger-button'
 import { useQuery } from '@tanstack/react-query'
 import { locationQueryKey } from 'entities/location/api/query-key'
+import { WeatherSection } from 'widgets/weather/ui/weather-section'
 
-export function HomePage() {
+export function AddressWeatherPage() {
   const deviceType = useDeviceType()
-  const { location: currentLocation, error: isErrorCurrentLocation } = useCurrentLocation()
+  const { location: currentLocation } = useCurrentLocation()
+  const { address: addressParams } = useParams()
 
+  const { data: addressParamsLocation } = useQuery(locationQueryKey.nxNyByAddress(addressParams ?? null))
   const { data: currentAddressObj } = useQuery(locationQueryKey.address(currentLocation))
 
-  const address = currentAddressObj?.addressName
-  const location = currentLocation
+  const address = addressParams
+  const location = addressParamsLocation
 
   return (
     <AppLayout>
@@ -55,15 +57,10 @@ export function HomePage() {
         )}
 
         <AppLayoutMain className="flex flex-col items-center gap-5">
-          {address && location && (
+          {location && currentAddressObj && address && (
             <Suspense fallback={<WeatherSection.Loading />}>
               <WeatherSection currentAddress={currentAddressObj.addressName} address={address} location={location} />
             </Suspense>
-          )}
-          {isErrorCurrentLocation && (
-            <div className="text-neutral-tertiary font-body flex flex-1 items-center justify-center">
-              현재 지역을 못찾았습니다.
-            </div>
           )}
         </AppLayoutMain>
       </AppLayoutContent>

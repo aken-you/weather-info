@@ -12,14 +12,14 @@ interface Location extends LatLng {
   ny: number
 }
 
-export function useCurrentLocation(): { location: Location | null; error: string | null; loading: boolean } {
+export function useCurrentLocation(): { location: Location | null; error: boolean; loading: boolean } {
   const [latLng, setLatLng] = useState<LatLng | null>(null)
-  const [error, setError] = useState<string | null>(null)
+  const [error, setError] = useState<boolean>(false)
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     if (!navigator.geolocation) {
-      setError('Geolocation을 지원하지 않는 브라우저입니다.')
+      setError(true)
       setLoading(false)
       return
     }
@@ -30,8 +30,8 @@ export function useCurrentLocation(): { location: Location | null; error: string
         setLatLng({ lat: latitude, lng: longitude })
         setLoading(false)
       },
-      err => {
-        setError(err.message)
+      _err => {
+        setError(true)
         setLoading(false)
       },
       {

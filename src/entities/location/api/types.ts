@@ -10,3 +10,14 @@ export type AddressResponse = {
     y: number // latitude
   }[]
 }
+
+export type GeocodingResponse = {
+  documents: {
+    address_name: string
+    x: string // longitude
+    y: string // latitude
+  }[]
+  meta: {
+    total_count: number
+  }
+}
