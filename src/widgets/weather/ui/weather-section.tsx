@@ -5,7 +5,7 @@ import { formatYYYYMMDD, getNowDate } from 'shared/lib/time'
 import { getCurrentHourWeather, getHourlyForecastList } from '../lib/hourly-forecast'
 import { getLastDepthAddress } from 'features/location/lib/address'
 import { getWeatherIconPath, getWeatherStatusText } from 'entities/weather/lib/weather-icon'
-import { WeatherStatus } from 'entities/weather/model/weather-status'
+import { WeatherStatus } from 'entities/weather/model/query-select-types'
 
 interface WeatherSectionProps {
   currentAddress: string // 현재 사용자 위치의 주소

@@ -5,7 +5,7 @@ import { locationQueryKey } from 'entities/location/api/query-key'
 import { weatherQueryKey } from 'entities/weather/api/query-key'
 import { getCurrentHourWeather } from 'widgets/weather/lib/hourly-forecast'
 import { getNowDate } from 'shared/lib/time'
-import { CurrentWeather, HourlyForecast, ShortForecast } from 'entities/weather/model/weather-status'
+import { CurrentWeather, HourlyForecast, ShortForecast } from 'entities/weather/model/query-select-types'
 
 interface FavoriteCardListProps {
   list: Favorite[]
