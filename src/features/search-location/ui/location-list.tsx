@@ -1,18 +1,13 @@
 import { getLastDepthAddress } from '../lib/address'
 
 interface LocationListProps {
-  keyword: string
   list: string[]
   focusedIndex: number
   ref?: React.Ref<HTMLUListElement>
   onSelect: (address: string) => void
 }
 
-export function LocationList({ keyword, list, focusedIndex, ref, onSelect }: LocationListProps) {
-  if (keyword.trim().length === 0) {
-    return <div className="text-muted-foreground font-body-small py-4 text-center">장소를 입력해주세요.</div>
-  }
-
+export function LocationList({ list, focusedIndex, ref, onSelect }: LocationListProps) {
   if (list.length === 0) {
     return (
       <div className="text-muted-foreground font-body-small py-4 text-center">
