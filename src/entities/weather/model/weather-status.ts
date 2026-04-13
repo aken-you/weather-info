@@ -9,3 +9,26 @@ export type WeatherStatus =
   | 'RAIN_DROP' // 빗방울
   | 'RAIN_SNOW_DROP' // 빗방울눈날림
   | 'SNOW_DROP' // 눈날림
+
+// 예보 데이터 타입
+export interface HourlyForecast {
+  fcstDate: string
+  fcstTime: string
+  temperature: number
+  weatherStatus: WeatherStatus
+}
+
+// 초단기실황 데이터 타입 (select으로 가공된 타입)
+export interface CurrentWeather {
+  temperature: number
+  humidity: number
+  precipitation: number
+  weatherStatus: WeatherStatus
+}
+
+// 단기예보 데이터 타입 (select으로 가공된 타입)
+export interface ShortForecast {
+  minTemp: number | null
+  maxTemp: number | null
+  hourlyForecast: HourlyForecast[]
+}

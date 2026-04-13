@@ -1,19 +1,5 @@
-import { WeatherStatus } from 'entities/weather/model/weather-status'
+import { CurrentWeather, HourlyForecast } from 'entities/weather/model/weather-status'
 import { formatHHMM, formatYYYYMMDD, getNowDate, isAfter, parseYYYYMMDDHHMM } from 'shared/lib/time'
-
-interface HourlyForecast {
-  fcstDate: string
-  fcstTime: string
-  temperature: number
-  weatherStatus: WeatherStatus
-}
-
-interface CurrentWeather {
-  temperature: number
-  humidity: number
-  precipitation: number
-  weatherStatus: WeatherStatus
-}
 
 /**
  * 현재 시간대의 날씨 데이터를 반환하는 함수

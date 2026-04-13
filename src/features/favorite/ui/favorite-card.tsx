@@ -1,4 +1,4 @@
-import { MoreVertical, Sun } from 'lucide-react'
+import { MoreVertical } from 'lucide-react'
 import { Button } from 'shared/ui/button'
 import {
   DropdownMenu,
@@ -10,8 +10,21 @@ import {
 import { Favorite, useFavoriteContext } from 'shared/model/favorite-context'
 import { getLastDepthAddress } from 'features/search-location/lib/address'
 import { useNavigate } from 'react-router-dom'
+import { getWeatherIconPath } from 'entities/weather/lib/weather-icon'
+import { HourlyForecast, ShortForecast, WeatherStatus } from 'entities/weather/model/weather-status'
 
-export function FavoriteCard({ id, address, alias }: Favorite) {
+interface FavoriteCardData {
+  location: { nx: number; ny: number; lat: number; lng: number }
+  shortForecast: ShortForecast
+  currentHourWeather: HourlyForecast
+}
+
+export interface FavoriteCardProps extends Favorite {
+  data: FavoriteCardData
+  currentHour: number
+}
+
+export function FavoriteCard({ id, address, alias, data, currentHour }: FavoriteCardProps) {
   const navigate = useNavigate()
   const favoriteStore = useFavoriteContext()
 
@@ -23,6 +36,8 @@ export function FavoriteCard({ id, address, alias }: Favorite) {
   const deleteFavorite = () => {
     favoriteStore.delete(id)
   }
+
+  const { currentHourWeather: 현재_시간대_날씨, shortForecast } = data
 
   return (
     <div
@@ -61,11 +76,17 @@ export function FavoriteCard({ id, address, alias }: Favorite) {
       </div>
 
       <div className="flex items-center gap-2">
-        <Sun className="h-8 w-8" />
-        <span className="font-h2 text-neutral-primary">25°C</span>
+        <img
+          src={getWeatherIconPath(현재_시간대_날씨.weatherStatus as WeatherStatus, currentHour)}
+          alt="날씨"
+          className="h-8 w-8"
+        />
+        <span className="font-h2 text-neutral-primary">{현재_시간대_날씨.temperature}°C</span>
       </div>
 
-      <span className="text-neutral-tertiary font-caption">최저 16° / 최고 27°</span>
+      <span className="text-neutral-tertiary font-caption">
+        최저 {shortForecast.minTemp}° / 최고 {shortForecast.maxTemp}°
+      </span>
     </div>
   )
 }

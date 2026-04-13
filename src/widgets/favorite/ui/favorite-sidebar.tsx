@@ -1,10 +1,11 @@
 import { MAX_FAVORITE_LIMIT } from 'entities/favorite/config/favorite'
 import { useFavoriteContext } from 'shared/model/favorite-context'
-import { FavoriteCard } from 'features/favorite/ui/favorite-card'
+import { FavoriteCardList } from 'features/favorite/ui/favorite-card-list'
 import { Plus } from 'lucide-react'
 import { useNavigate } from 'react-router-dom'
 import { AppLayoutSidebar } from 'shared/ui/app-layout'
 import { Button } from 'shared/ui/button'
+import { Suspense } from 'react'
 
 export default function FavoriteSidebar() {
   const navigate = useNavigate()
@@ -26,9 +27,9 @@ export default function FavoriteSidebar() {
       <h4 className="font-caption text-neutral-tertiary">즐겨찾기</h4>
 
       <nav className="flex flex-col gap-3">
-        {favoriteList.map(favorite => (
-          <FavoriteCard key={favorite.id} {...favorite} />
-        ))}
+        <Suspense fallback={<FavoriteCardList.Loading />}>
+          <FavoriteCardList list={favoriteList} />
+        </Suspense>
 
         <Button variant="outline" onClick={goToAddFavorite}>
           <Plus className="h-4 w-4" />
