@@ -38,7 +38,7 @@ interface AppLayoutMainProps {
 }
 
 export function AppLayoutMain({ children, className }: AppLayoutMainProps) {
-  return <main className={`desktop:flex-1 desktop:px-6 desktop:py-7 ${className || ''}`}>{children}</main>
+  return <main className={`desktop:flex-1 desktop:px-6 desktop:py-7 min-w-0 ${className || ''}`}>{children}</main>
 }
 
 interface AppLayoutSidebarProps {
