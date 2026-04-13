@@ -36,6 +36,7 @@ export function EditFavoritePage() {
     }
 
     favoriteStore.update(id, alias || null)
+    navigate(-1)
   }
 
   return (

@@ -1,4 +1,4 @@
-import { queryOptions, skipToken } from '@tanstack/react-query'
+import { queryOptions } from '@tanstack/react-query'
 import { getAddress } from './get-address'
 import { getNxNyByAddress } from './get-nx-ny-by-address'
 import { convertToGrid } from 'shared/lib/convert-to-grid'
@@ -9,7 +9,8 @@ export const locationQueryKey = {
   address: (location: { lat: number; lng: number } | null) =>
     queryOptions({
       queryKey: [...locationQueryKey.all(), 'address', location],
-      queryFn: location ? async () => getAddress(location) : skipToken,
+      queryFn: async () => getAddress(location!),
+      enabled: !!location,
       select: data => {
         const address = data.documents.find(doc => doc.region_type === 'H')!
 
@@ -35,7 +36,8 @@ export const locationQueryKey = {
   nxNyByAddress: (address: string | null) =>
     queryOptions({
       queryKey: [...locationQueryKey.all(), 'nx-ny', address],
-      queryFn: address ? async () => getNxNyByAddress(address) : skipToken,
+      queryFn: async () => getNxNyByAddress(address!),
+      enabled: !!address,
       select: data => {
         const { x: lng, y: lat } = data.documents[0]
         const latNum = parseFloat(lat)
