@@ -1,4 +1,4 @@
-import { WeatherStatus } from '../model/weather-status'
+import { WeatherStatus } from '../model/query-select-types'
 
 /**
  * 날씨 상태와 시간에 따라 적절한 아이콘 경로를 반환합니다.

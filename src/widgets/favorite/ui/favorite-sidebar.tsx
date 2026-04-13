@@ -1,4 +1,4 @@
-import { MAX_FAVORITE_LIMIT } from 'entities/favorite/config/favorite'
+import { MAX_FAVORITE_LIMIT } from 'shared/config/favorite'
 import { useFavoriteContext } from 'shared/model/favorite-context'
 import { FavoriteCardList } from 'features/favorite/ui/favorite-card-list'
 import { Plus } from 'lucide-react'

@@ -1,13 +1,13 @@
 import { useFavoriteContext } from 'shared/model/favorite-context'
 import { FavoriteCardList } from 'features/favorite/ui/favorite-card-list'
-import { SearchLocationDialog } from 'features/search-location/ui/search-location-dialog'
 import { Plus, Search, Star, Sun } from 'lucide-react'
 import { Link, useNavigate } from 'react-router-dom'
 import { AppLayout, AppLayoutContent, AppLayoutFooter, AppLayoutHeader, AppLayoutMain } from 'shared/ui/app-layout'
-import { MAX_FAVORITE_LIMIT } from 'entities/favorite/config/favorite'
+import { MAX_FAVORITE_LIMIT } from 'shared/config/favorite'
 import { useDeviceType } from 'shared/lib/use-device-type'
 import { Suspense, useEffect } from 'react'
 import { useLastActiveTab } from 'shared/lib/use-last-active-tab'
+import { SearchLocationDialog } from 'features/location/ui/search-location-dialog'
 
 // favorite 페이지는 모바일에서만 사용하는 페이지입니다.
 export function FavoritePage() {

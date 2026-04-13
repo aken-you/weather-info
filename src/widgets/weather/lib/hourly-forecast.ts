@@ -1,4 +1,4 @@
-import { CurrentWeather, HourlyForecast } from 'entities/weather/model/weather-status'
+import { CurrentWeather, HourlyForecast } from 'entities/weather/model/query-select-types'
 import { formatHHMM, formatYYYYMMDD, getNowDate, isAfter, parseYYYYMMDDHHMM } from 'shared/lib/time'
 
 /**

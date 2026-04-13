@@ -4,7 +4,7 @@ import { Input } from 'shared/ui/input'
 import { filterAddressList } from '../lib/address'
 import { LocationList } from './location-list'
 import { useListFocus } from 'shared/lib/use-list-focus'
-import { koreaAddressList } from '../model/korea-district-list'
+import { koreaAddressList } from 'entities/location/model/korea-district-list'
 import { useDebounce } from 'shared/lib/use-debounce'
 
 interface SearchLocationDialogProps {

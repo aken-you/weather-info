@@ -8,10 +8,10 @@ import {
   DropdownMenuTrigger,
 } from 'shared/ui/dropdown-menu'
 import { Favorite, useFavoriteContext } from 'shared/model/favorite-context'
-import { getLastDepthAddress } from 'features/search-location/lib/address'
+import { getLastDepthAddress } from 'features/location/lib/address'
 import { useNavigate } from 'react-router-dom'
 import { getWeatherIconPath } from 'entities/weather/lib/weather-icon'
-import { HourlyForecast, ShortForecast, WeatherStatus } from 'entities/weather/model/weather-status'
+import { HourlyForecast, ShortForecast, WeatherStatus } from 'entities/weather/model/query-select-types'
 
 interface FavoriteCardData {
   location: { nx: number; ny: number; lat: number; lng: number }

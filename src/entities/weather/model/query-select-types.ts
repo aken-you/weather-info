@@ -1,3 +1,5 @@
+// weather queryOptions의 select에서 가공된 데이터 타입들
+
 export type WeatherStatus =
   | 'SUNNY' // 맑음
   | 'PARTLY_CLOUDY' // 구름많음

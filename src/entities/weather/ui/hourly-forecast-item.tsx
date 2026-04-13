@@ -1,6 +1,6 @@
 import { differenceInDays, getNowDate, parseYYYYMMDDHHMM } from 'shared/lib/time'
 import { getWeatherIconPath, getWeatherStatusText } from 'entities/weather/lib/weather-icon'
-import { WeatherStatus } from '../model/weather-status'
+import { WeatherStatus } from '../model/query-select-types'
 
 interface HourlyForecastItemProps {
   fcstDate: string

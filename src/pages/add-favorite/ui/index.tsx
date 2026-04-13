@@ -2,14 +2,15 @@ import { Search, Star, Sun } from 'lucide-react'
 import { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useFavoriteContext } from 'shared/model/favorite-context'
-import { MAX_FAVORITE_LIMIT } from 'entities/favorite/config/favorite'
+import { MAX_FAVORITE_LIMIT } from 'shared/config/favorite'
 import { useDeviceType } from 'shared/lib/use-device-type'
 import { AppLayout, AppLayoutContent, AppLayoutFooter, AppLayoutHeader, AppLayoutMain } from 'shared/ui/app-layout'
 import { Button } from 'shared/ui/button'
 import { Input } from 'shared/ui/input'
-import { SearchLocationDialog } from 'features/search-location/ui/search-location-dialog'
+
 import FavoriteSidebar from 'widgets/favorite/ui/favorite-sidebar'
 import { useLastActiveTab } from 'shared/lib/use-last-active-tab'
+import { SearchLocationDialog } from 'features/location/ui/search-location-dialog'
 
 export function AddFavoritePage() {
   const navigate = useNavigate()

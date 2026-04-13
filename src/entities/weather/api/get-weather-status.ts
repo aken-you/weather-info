@@ -1,4 +1,4 @@
-import { WeatherStatus } from '../model/weather-status'
+import { WeatherStatus } from '../model/query-select-types'
 
 /**
  * PTY (강수형태) 코드를 날씨 상태로 변환
