@@ -19,6 +19,18 @@ export default defineConfig([
     ],
     rules: {
       'react-hooks/set-state-in-effect': 'warn',
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true,
+        },
+      ],
     },
   },
   ...storybook.configs['flat/recommended'],
