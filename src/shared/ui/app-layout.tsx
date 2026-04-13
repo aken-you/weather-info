@@ -38,7 +38,7 @@ interface AppLayoutMainProps {
 }
 
 export function AppLayoutMain({ children, className }: AppLayoutMainProps) {
-  return <main className={`desktop:flex-1 desktop:px-6 desktop:py-7 ${className || ''}`}>{children}</main>
+  return <main className={`desktop:flex-1 desktop:px-6 desktop:py-7 min-w-0 ${className || ''}`}>{children}</main>
 }
 
 interface AppLayoutSidebarProps {
@@ -59,7 +59,9 @@ interface AppLayoutFooterProps {
 
 export function AppLayoutFooter({ children, className }: AppLayoutFooterProps) {
   return (
-    <footer className={`fixed right-0 bottom-0 left-0 border-t border-t-gray-300 px-4 pt-2 pb-4 ${className || ''}`}>
+    <footer
+      className={`fixed right-0 bottom-0 left-0 z-10 border-t border-t-gray-300 bg-white px-4 pt-2 pb-4 ${className || ''}`}
+    >
       {children}
     </footer>
   )
