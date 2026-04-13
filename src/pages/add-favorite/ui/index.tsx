@@ -1,6 +1,6 @@
 import { Search, Star, Sun } from 'lucide-react'
 import { useState } from 'react'
-import { NavLink, useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useFavoriteContext } from 'shared/model/favorite-context'
 import { MAX_FAVORITE_LIMIT } from 'entities/favorite/config/favorite'
 import { useDeviceType } from 'shared/lib/use-device-type'
@@ -9,11 +9,15 @@ import { Button } from 'shared/ui/button'
 import { Input } from 'shared/ui/input'
 import { SearchLocationDialog } from 'features/search-location/ui/search-location-dialog'
 import FavoriteSidebar from 'widgets/favorite/ui/favorite-sidebar'
+import { useLastActiveTab } from 'shared/lib/use-last-active-tab'
 
 export function AddFavoritePage() {
   const navigate = useNavigate()
   const deviceType = useDeviceType()
   const favoriteStore = useFavoriteContext()
+
+  const activeTab = useLastActiveTab()
+
   const [alias, setAlias] = useState<string>('')
   const [selectedAddress, setSelectedAddress] = useState<string>('')
 
@@ -104,24 +108,20 @@ export function AddFavoritePage() {
       {deviceType === 'mobile' && (
         <AppLayoutFooter>
           <nav className="flex h-15.5 items-center rounded-[2.25rem] border border-gray-200 p-1">
-            <NavLink
+            <Link
               to="/"
-              className={({ isActive }) =>
-                `${isActive ? 'bg-brand-primary text-white' : 'text-neutral-secondary'} flex h-13.5 flex-1 flex-col items-center justify-center gap-1 rounded-[2.25rem] text-[.75rem]`
-              }
+              className={`${activeTab === 'weather' ? 'bg-brand-primary text-white' : 'text-neutral-secondary'} flex h-13.5 flex-1 flex-col items-center justify-center gap-1 rounded-[2.25rem] text-[.75rem]`}
             >
               <Sun className="h-4.5 w-4.5" />
               날씨
-            </NavLink>
-            <NavLink
+            </Link>
+            <Link
               to="/favorite"
-              className={({ isActive }) =>
-                `${isActive ? 'bg-brand-primary text-white' : 'text-neutral-secondary'} flex h-13.5 flex-1 flex-col items-center justify-center gap-1 rounded-[2.25rem] text-[.75rem]`
-              }
+              className={`${activeTab === 'favorite' ? 'bg-brand-primary text-white' : 'text-neutral-secondary'} flex h-13.5 flex-1 flex-col items-center justify-center gap-1 rounded-[2.25rem] text-[.75rem]`}
             >
               <Star className="h-4.5 w-4.5" />
               즐겨찾기
-            </NavLink>
+            </Link>
           </nav>
         </AppLayoutFooter>
       )}
