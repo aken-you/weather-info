@@ -1,19 +1,28 @@
 import { useFavoriteContext } from 'shared/model/favorite-context'
 import { FavoriteCard } from 'features/favorite/ui/favorite-card'
-import { SearchLocationTriggerButton } from 'features/search-location/ui/search-location-trigger-button'
-import { Plus, Star, Sun } from 'lucide-react'
-import { Link, NavLink } from 'react-router-dom'
+import { SearchLocationDialog } from 'features/search-location/ui/search-location-dialog'
+import { Plus, Search, Star, Sun } from 'lucide-react'
+import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AppLayout, AppLayoutContent, AppLayoutFooter, AppLayoutHeader, AppLayoutMain } from 'shared/ui/app-layout'
 
 // favorite 페이지는 모바일에서만 사용하는 페이지입니다.
 export function FavoritePage() {
+  const navigate = useNavigate()
   const favoriteStore = useFavoriteContext()
   const favoriteList = favoriteStore.getAll()
 
   return (
     <AppLayout>
       <AppLayoutHeader className="desktop:justify-end">
-        <SearchLocationTriggerButton />
+        <SearchLocationDialog
+          trigger={
+            <button className="desktop:w-fit text-muted-foreground font-body-small flex h-11 w-full cursor-pointer items-center gap-1 rounded-lg bg-gray-100 px-2.5 py-1">
+              <Search className="h-4 w-4" />
+              시·군·구·동 날씨 검색
+            </button>
+          }
+          onSelect={address => navigate(`/${address}`)}
+        />
       </AppLayoutHeader>
 
       <AppLayoutContent>

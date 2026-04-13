@@ -3,16 +3,11 @@ import { useState } from 'react'
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useFavoriteContext } from 'shared/model/favorite-context'
 import { MAX_FAVORITE_LIMIT } from 'entities/favorite/config/favorite'
-import { filterAddressList } from 'features/search-location/lib/address'
-import { useListFocus } from 'shared/lib/use-list-focus'
 import { useDeviceType } from 'shared/lib/use-device-type'
 import { AppLayout, AppLayoutContent, AppLayoutFooter, AppLayoutHeader, AppLayoutMain } from 'shared/ui/app-layout'
 import { Button } from 'shared/ui/button'
-import { Dialog, DialogContent, DialogTrigger } from 'shared/ui/dialog'
 import { Input } from 'shared/ui/input'
-import koreaDistrictsData from '../../../../korea-districts.json'
-import { LocationList } from 'features/search-location/ui/location-list'
-import { SearchLocationTriggerButton } from 'features/search-location/ui/search-location-trigger-button'
+import { SearchLocationDialog } from 'features/search-location/ui/search-location-dialog'
 import FavoriteSidebar from 'widgets/favorite/ui/favorite-sidebar'
 
 export function AddFavoritePage() {
@@ -21,22 +16,6 @@ export function AddFavoritePage() {
   const favoriteStore = useFavoriteContext()
   const [alias, setAlias] = useState<string>('')
   const [selectedAddress, setSelectedAddress] = useState<string>('')
-  const [keyword, setKeyword] = useState<string>('')
-  const [isDialogOpen, setIsDialogOpen] = useState<boolean>(false)
-
-  const addresses = koreaDistrictsData.koreaDistricts.map(address => address.replaceAll('-', ' '))
-  const filteredAddressList = filterAddressList(addresses, keyword)
-
-  const { focusedIndex, listRef, focusUp, focusDown } = useListFocus({
-    items: filteredAddressList,
-    resetFocusTrigger: keyword,
-  })
-
-  const handleSelectAddress = (address: string) => {
-    setSelectedAddress(address)
-    setIsDialogOpen(false)
-    setKeyword('')
-  }
 
   const handleSubmit = () => {
     if (!selectedAddress) {
@@ -54,17 +33,18 @@ export function AddFavoritePage() {
     navigate(-1)
   }
 
-  const handleDialogOpenChange = (open: boolean) => {
-    setIsDialogOpen(open)
-    if (open) {
-      setKeyword('')
-    }
-  }
-
   return (
     <AppLayout>
       <AppLayoutHeader className="desktop:justify-end">
-        <SearchLocationTriggerButton />
+        <SearchLocationDialog
+          trigger={
+            <button className="desktop:w-fit text-muted-foreground font-body-small flex h-11 w-full cursor-pointer items-center gap-1 rounded-lg bg-gray-100 px-2.5 py-1">
+              <Search className="h-4 w-4" />
+              시·군·구·동 날씨 검색
+            </button>
+          }
+          onSelect={address => navigate(`/${address}`)}
+        />
       </AppLayoutHeader>
 
       <AppLayoutContent>
@@ -92,9 +72,9 @@ export function AddFavoritePage() {
                 장소 <span className="text-red-500">*</span>
               </label>
 
-              <Dialog open={isDialogOpen} onOpenChange={handleDialogOpenChange}>
-                <DialogTrigger asChild>
-                  <button className="text-muted-foreground font-body-small flex h-11 w-full cursor-pointer items-center gap-1 rounded-lg border border-gray-300 bg-white px-2.5 py-1 text-left">
+              <SearchLocationDialog
+                trigger={
+                  <button className="text-muted-foreground font-body-small flex h-10 w-full cursor-pointer items-center gap-1 rounded-lg border border-gray-300 bg-white px-2.5 py-1 text-left">
                     {selectedAddress ? (
                       <span className="text-neutral-primary">{selectedAddress}</span>
                     ) : (
@@ -104,40 +84,9 @@ export function AddFavoritePage() {
                       </>
                     )}
                   </button>
-                </DialogTrigger>
-                <DialogContent className="sm:max-w-sm" showCloseButton={false}>
-                  <Input
-                    placeholder="시·군·구·동 검색"
-                    value={keyword}
-                    onChange={e => setKeyword(e.target.value)}
-                    onKeyDown={e => {
-                      if (e.key === 'ArrowDown') {
-                        focusDown()
-                        return
-                      }
-
-                      if (e.key === 'ArrowUp') {
-                        focusUp()
-                        return
-                      }
-
-                      if (e.key === 'Enter') {
-                        const focusedAddress = filteredAddressList[focusedIndex]
-                        handleSelectAddress(focusedAddress)
-                      }
-                    }}
-                    autoFocus
-                  />
-
-                  <LocationList
-                    ref={listRef}
-                    keyword={keyword}
-                    list={filteredAddressList}
-                    focusedIndex={focusedIndex}
-                    onSelect={handleSelectAddress}
-                  />
-                </DialogContent>
-              </Dialog>
+                }
+                onSelect={setSelectedAddress}
+              />
             </div>
           </div>
 

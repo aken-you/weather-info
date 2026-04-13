@@ -1,10 +1,10 @@
 import { useDeviceType } from 'shared/lib/use-device-type'
 import { AppLayout, AppLayoutContent, AppLayoutFooter, AppLayoutHeader, AppLayoutMain } from 'shared/ui/app-layout'
-import { Star, Sun } from 'lucide-react'
-import { NavLink, useParams } from 'react-router-dom'
+import { Search, Star, Sun } from 'lucide-react'
+import { NavLink, useNavigate, useParams } from 'react-router-dom'
 import { useCurrentLocation } from 'shared/lib/use-current-location'
 import { Suspense } from 'react'
-import { SearchLocationTriggerButton } from 'features/search-location/ui/search-location-trigger-button'
+import { SearchLocationDialog } from 'features/search-location/ui/search-location-dialog'
 import { useQuery } from '@tanstack/react-query'
 import { locationQueryKey } from 'entities/location/api/query-key'
 import { WeatherSection } from 'widgets/weather/ui/weather-section'
@@ -12,6 +12,7 @@ import FavoriteSidebar from 'widgets/favorite/ui/favorite-sidebar'
 
 export function AddressWeatherPage() {
   const deviceType = useDeviceType()
+  const navigate = useNavigate()
   const { location: currentLocation } = useCurrentLocation()
   const { address: addressParams } = useParams()
 
@@ -24,7 +25,15 @@ export function AddressWeatherPage() {
   return (
     <AppLayout>
       <AppLayoutHeader className="desktop:justify-end">
-        <SearchLocationTriggerButton />
+        <SearchLocationDialog
+          trigger={
+            <button className="desktop:w-fit text-muted-foreground font-body-small flex h-11 w-full cursor-pointer items-center gap-1 rounded-lg bg-gray-100 px-2.5 py-1">
+              <Search className="h-4 w-4" />
+              시·군·구·동 날씨 검색
+            </button>
+          }
+          onSelect={address => navigate(`/${address}`)}
+        />
       </AppLayoutHeader>
 
       <AppLayoutContent>
