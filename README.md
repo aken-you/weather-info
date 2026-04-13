@@ -1,5 +1,4 @@
 # Weather Info
-
 ## 프로젝트 실행 방법
 
 ```bash
@@ -23,6 +22,52 @@ VITE_KAKAO_REST_API_KEY=
 - Shadcn
 
 ## 기능
+
+### 날씨 조회
+
+맨 처음에는 현재 위치의 날씨를 볼 수 있습니다.
+
+<img width="700" alt="스크린샷 2026-04-13 오후 11 44 48" src="https://github.com/user-attachments/assets/7a373520-5634-4f0f-8e0d-b505aebd04b3" />
+
+현재 위치가 아닌 다른 위치의 날씨도 확인 가능합니다.
+
+- 즐겨찾기의 카드를 클릭하여 즐겨찾기한 지역의 날씨를 확인할 수 있습니다.
+- 검색창을 통해, 검색한 지역의 날씨를 확인할 수 있습니다.
+
+<img width="700" alt="스크린샷 2026-04-13 오후 11 44 59" src="https://github.com/user-attachments/assets/52e305bc-0f81-4735-8b89-a09b3a40ece4" />
+
+### 지역 검색
+
+헤더에 있는 검색 input을 클릭하면, 지역을 검색할 수 있는 창이 뜹니다.
+검색어 입력 후 지역을 선택하면, 해당 지역의 날씨를 확인할 수 있습니다.
+
+<img width="700" height="900" alt="스크린샷 2026-04-13 오후 11 48 02" src="https://github.com/user-attachments/assets/76f71a3b-7bf6-4cf0-b8a7-c244bfd18803" />
+
+### 즐겨찾기
+
+- 데스크탑: 왼쪽 사이드바에 즐겨찾기 리스트를 볼 수 있습니다.
+- 모바일: 하단의 즐겨찾기 탭을 클릭하면, 즐겨찾기 리스트를 볼 수 있습니다.
+
+<img width="379" height="667" alt="스크린샷 2026-04-13 오후 11 50 10" src="https://github.com/user-attachments/assets/e0e2d3bb-e6dc-4e51-bfa1-ac76fd2df0a7" />
+
+#### 즐겨찾기 추가
+
+- 데스크탑: 왼쪽 사이드바의 추가 버튼으로 즐겨찾기를 추가할 수 있습니다.
+- 모바일: 즐겨찾기 탭에서 상단에 추가 버튼으로 즐겨찾기를 추가할 수 있습니다.
+
+<img width="700" height="900" alt="스크린샷 2026-04-13 오후 11 51 14" src="https://github.com/user-attachments/assets/27af7d19-42b9-428a-91ca-9998413213bf" />
+
+
+#### 즐겨찾기 수정
+
+즐겨찾기 카드 더보기 버튼을 클릭하면 드롭다운이 나옵니다. 드롭다운에서 수정 버튼을 클릭하면, 즐겨찾기 수정 페이지로 이동합니다.
+
+<img width="700" height="900" alt="스크린샷 2026-04-13 오후 11 52 00" src="https://github.com/user-attachments/assets/cb3fceeb-bc78-4396-931c-839a6f2a9e08" />
+
+#### 즐겨찾기 삭제
+
+수정과 비슷하게 드롭다운의 삭제 버튼을 클릭하면, 바로 즐겨찾기가 삭제됩니다.
+
 
 ## 고려한점
 
