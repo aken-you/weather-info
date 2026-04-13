@@ -3,7 +3,7 @@ import { weatherQueryKey } from 'entities/weather/api/query-key'
 import { HourlyForecastItem } from 'entities/weather/ui/hourly-forecast-item'
 import { Sun } from 'lucide-react'
 import { formatYYYYMMDD, getNowDate } from 'shared/lib/time'
-import { getHourlyForecastList } from '../lib/hourly-forecast'
+import { getCurrentHourWeather, getHourlyForecastList } from '../lib/hourly-forecast'
 import { getLastDepthAddress } from 'features/search-location/lib/address'
 
 interface WeatherSectionProps {
@@ -26,13 +26,21 @@ export function WeatherSection({ currentAddress, address, location }: WeatherSec
     ],
   })
 
-  const dateObj = getNowDate()
-  const yyyymmdd = formatYYYYMMDD(dateObj)
+  const nowDateObj = getNowDate()
+  const yyyymmdd = formatYYYYMMDD(nowDateObj)
   const yyyy = yyyymmdd.slice(0, 4)
   const mm = yyyymmdd.slice(4, 6)
   const dd = yyyymmdd.slice(6, 8)
 
+  // 시간대별 예보의 첫 번째 항목이 현재 시간대 데이터
+  const 현재_시간대_날씨 = getCurrentHourWeather({
+    currentWeather,
+    ultraShortForecast,
+    nowDateObj: nowDateObj,
+  })
+
   const hourlyForecastList = getHourlyForecastList({
+    currentWeather,
     ultraShortForecast,
     shortForecast: shortForecast.hourlyForecast,
   })
@@ -56,7 +64,7 @@ export function WeatherSection({ currentAddress, address, location }: WeatherSec
       <section className="flex flex-col items-center gap-2 py-3">
         <div className="text-neutral-primary flex items-center gap-1">
           <Sun className="h-22.5 w-22.5" />
-          <span className="font-display">{currentWeather.temperature}°C</span>
+          <span className="font-display">{현재_시간대_날씨.temperature}°C</span>
         </div>
 
         <span className="font-h3 text-neutral-secondary">맑음</span>
