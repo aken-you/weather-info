@@ -4,6 +4,7 @@ import { SearchLocationDialog } from 'features/search-location/ui/search-locatio
 import { Plus, Search, Star, Sun } from 'lucide-react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AppLayout, AppLayoutContent, AppLayoutFooter, AppLayoutHeader, AppLayoutMain } from 'shared/ui/app-layout'
+import { MAX_FAVORITE_LIMIT } from 'entities/favorite/config/favorite'
 
 // favorite 페이지는 모바일에서만 사용하는 페이지입니다.
 export function FavoritePage() {
@@ -26,15 +27,17 @@ export function FavoritePage() {
       </AppLayoutHeader>
 
       <AppLayoutContent>
-        <AppLayoutMain className="flex flex-col items-center gap-5">
+        <AppLayoutMain className="flex flex-col items-center">
           <section className="flex w-full items-center justify-between px-4 pt-4 pb-3">
             <div className="flex items-end gap-2">
               <span className="font-body-large text-neutral-primary font-bold">즐겨찾기</span>
-              <span className="font-body-small text-neutral-tertiary"> 3 / 5</span>
+              <span className="font-body-small text-neutral-tertiary">
+                {favoriteList.length} / {MAX_FAVORITE_LIMIT}
+              </span>
             </div>
 
             <Link
-              to="/"
+              to="/add-favorite"
               className="bg-brand-primary font-body flex h-8 items-center gap-1.5 rounded-lg px-2.5 text-white"
             >
               <Plus className="h-4 w-4" />
@@ -42,7 +45,7 @@ export function FavoritePage() {
             </Link>
           </section>
 
-          <section className="bg-gray-50">
+          <section className="grid h-[calc(100vh-7.5rem)] w-full auto-rows-min grid-cols-1 items-start gap-2 bg-gray-100 px-4 pt-5 pb-22 min-[23.75rem]:grid-cols-2">
             {favoriteList.map(favorite => (
               <FavoriteCard key={favorite.id} {...favorite} />
             ))}

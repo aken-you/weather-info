@@ -26,7 +26,7 @@ export function FavoriteCard({ id, address, alias }: Favorite) {
 
   return (
     <div
-      className="flex cursor-pointer flex-col gap-2 rounded-[.75rem] bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.05)]"
+      className="flex h-fit cursor-pointer flex-col gap-2 rounded-[.75rem] bg-white p-3 shadow-[0_20px_60px_rgba(0,0,0,0.05)]"
       onClick={goToDetail}
     >
       <div className="flex justify-between gap-1">
