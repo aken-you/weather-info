@@ -6,7 +6,7 @@ import {
   DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from 'shared/ui/dropdown'
+} from 'shared/ui/dropdown-menu'
 import { Favorite, useFavoriteContext } from 'shared/model/favorite-context'
 import { getLastDepthAddress } from 'features/search-location/lib/address'
 import { useNavigate } from 'react-router-dom'
