@@ -3,7 +3,7 @@ import { weatherQueryKey } from 'entities/weather/api/query-key'
 import { HourlyForecastItem } from 'entities/weather/ui/hourly-forecast-item'
 import { Sun } from 'lucide-react'
 import { formatYYYYMMDD, getNowDate } from 'shared/lib/time'
-import { getHourlyForecastList } from '../../../page/home/lib/hourly-forecast'
+import { getHourlyForecastList } from '../lib/hourly-forecast'
 import { getLastDepthAddress } from 'features/search-location/lib/address'
 
 interface WeatherSectionProps {

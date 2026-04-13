@@ -1,6 +1,6 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { HomePage } from '../page/home/ui'
-import { AddressWeatherPage } from '../page/address-weather/ui'
+import { HomePage } from 'pages/home/ui'
+import { AddressWeatherPage } from 'pages/address-weather/ui'
 
 export const router = createBrowserRouter([
   {
