@@ -1,0 +1,11 @@
+export type WeatherStatus =
+  | 'SUNNY' // 맑음
+  | 'PARTLY_CLOUDY' // 구름많음
+  | 'CLOUDY' // 흐림
+  | 'RAINY' // 비
+  | 'SNOWY' // 눈
+  | 'RAIN_SNOW' // 비/눈
+  | 'SHOWER' // 소나기
+  | 'RAIN_DROP' // 빗방울
+  | 'RAIN_SNOW_DROP' // 빗방울눈날림
+  | 'SNOW_DROP' // 눈날림
