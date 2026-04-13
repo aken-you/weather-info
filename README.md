@@ -2,8 +2,9 @@
 ## 프로젝트 실행 방법
 
 ```bash
+nvm use
 npm install # 의존성 설치
-npm dev # dev 서버 실행
+npm run dev # dev 서버 실행
 ```
 
 .env 파일 설정
