@@ -5,12 +5,23 @@ import { Plus, Search, Star, Sun } from 'lucide-react'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { AppLayout, AppLayoutContent, AppLayoutFooter, AppLayoutHeader, AppLayoutMain } from 'shared/ui/app-layout'
 import { MAX_FAVORITE_LIMIT } from 'entities/favorite/config/favorite'
+import { useDeviceType } from 'shared/lib/use-device-type'
+import { useEffect } from 'react'
 
 // favorite 페이지는 모바일에서만 사용하는 페이지입니다.
 export function FavoritePage() {
   const navigate = useNavigate()
   const favoriteStore = useFavoriteContext()
   const favoriteList = favoriteStore.getAll()
+
+  const deviceType = useDeviceType()
+
+  useEffect(() => {
+    // 모바일만 사용하는 페이지이므로, 데스크탑일 경우 메인페이지로 이동
+    if (deviceType === 'desktop') {
+      navigate('/')
+    }
+  }, [deviceType, navigate])
 
   return (
     <AppLayout>
