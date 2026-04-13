@@ -1,14 +1,15 @@
-import { Sun } from 'lucide-react'
 import { differenceInDays, getNowDate, parseYYYYMMDDHHMM } from 'shared/lib/time'
+import { getWeatherIconPath, getWeatherStatusText } from 'entities/weather/lib/weather-icon'
+import { WeatherStatus } from '../model/weather-status'
 
 interface HourlyForecastItemProps {
   fcstDate: string
   fcstTime: string
   temperature: number
-  weatherStatus: string
+  weatherStatus: WeatherStatus
 }
 
-export function HourlyForecastItem({ fcstDate, fcstTime, temperature }: HourlyForecastItemProps) {
+export function HourlyForecastItem({ fcstDate, fcstTime, temperature, weatherStatus }: HourlyForecastItemProps) {
   const nowDateObj = getNowDate()
 
   const fcstDateObj = parseYYYYMMDDHHMM(`${fcstDate}${fcstTime}`)
@@ -43,8 +44,13 @@ export function HourlyForecastItem({ fcstDate, fcstTime, temperature }: HourlyFo
         </div>
       )}
 
-      {/* todo: 날씨 상태 처리 */}
-      <Sun className="h-8 w-8" />
+      <div className={isSameTime ? '' : 'bg-brand-primary rounded-lg'}>
+        <img
+          src={getWeatherIconPath(weatherStatus, fcstDateObj.getHours())}
+          alt={getWeatherStatusText(weatherStatus)}
+          className="h-8 w-8"
+        />
+      </div>
 
       <span className="font-caption font-semibold">{temperature}°C</span>
     </li>

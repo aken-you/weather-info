@@ -1,17 +1,18 @@
+import { WeatherStatus } from 'entities/weather/model/weather-status'
 import { formatHHMM, formatYYYYMMDD, getNowDate, isAfter, parseYYYYMMDDHHMM } from 'shared/lib/time'
 
 interface HourlyForecast {
   fcstDate: string
   fcstTime: string
   temperature: number
-  weatherStatus: string
+  weatherStatus: WeatherStatus
 }
 
 interface CurrentWeather {
   temperature: number
   humidity: number
   precipitation: number
-  weatherStatus: string
+  weatherStatus: WeatherStatus
 }
 
 /**

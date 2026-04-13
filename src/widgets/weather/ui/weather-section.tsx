@@ -1,10 +1,11 @@
 import { useSuspenseQueries } from '@tanstack/react-query'
 import { weatherQueryKey } from 'entities/weather/api/query-key'
 import { HourlyForecastItem } from 'entities/weather/ui/hourly-forecast-item'
-import { Sun } from 'lucide-react'
 import { formatYYYYMMDD, getNowDate } from 'shared/lib/time'
 import { getCurrentHourWeather, getHourlyForecastList } from '../lib/hourly-forecast'
 import { getLastDepthAddress } from 'features/search-location/lib/address'
+import { getWeatherIconPath, getWeatherStatusText } from 'entities/weather/lib/weather-icon'
+import { WeatherStatus } from 'entities/weather/model/weather-status'
 
 interface WeatherSectionProps {
   currentAddress: string // 현재 사용자 위치의 주소
@@ -31,6 +32,7 @@ export function WeatherSection({ currentAddress, address, location }: WeatherSec
   const yyyy = yyyymmdd.slice(0, 4)
   const mm = yyyymmdd.slice(4, 6)
   const dd = yyyymmdd.slice(6, 8)
+  const currentHour = nowDateObj.getHours()
 
   // 시간대별 예보의 첫 번째 항목이 현재 시간대 데이터
   const 현재_시간대_날씨 = getCurrentHourWeather({
@@ -62,12 +64,20 @@ export function WeatherSection({ currentAddress, address, location }: WeatherSec
       </section>
 
       <section className="flex flex-col items-center gap-2 py-3">
-        <div className="text-neutral-primary flex items-center gap-1">
-          <Sun className="h-22.5 w-22.5" />
+        <div className="text-neutral-primary flex items-center gap-3">
+          <div className="bg-brand-primary rounded-2xl">
+            <img
+              src={getWeatherIconPath(현재_시간대_날씨.weatherStatus as WeatherStatus, currentHour)}
+              alt={getWeatherStatusText(현재_시간대_날씨.weatherStatus as WeatherStatus)}
+              className="h-22.5 w-22.5"
+            />
+          </div>
           <span className="font-display">{현재_시간대_날씨.temperature}°C</span>
         </div>
 
-        <span className="font-h3 text-neutral-secondary">맑음</span>
+        <span className="font-h3 text-neutral-secondary">
+          {getWeatherStatusText(현재_시간대_날씨.weatherStatus as WeatherStatus)}
+        </span>
 
         <span className="font-body text-neutral-tertiary">
           최저 {shortForecast.minTemp}°C · 최고 {shortForecast.maxTemp}°C
